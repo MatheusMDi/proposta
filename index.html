@@ -43,6 +43,55 @@
             opacity: 0;
             transition: opacity 0.2s;
         }
+
+        /* Estilos para a tabela responsiva em mobile */
+        @media (max-width: 767px) {
+            #investimento table thead {
+                display: none; /* Esconde o cabeçalho da tabela */
+            }
+            #investimento table, 
+            #investimento table tbody, 
+            #investimento table tr, 
+            #investimento table td {
+                display: block; /* Transforma tudo em blocos empilháveis */
+                width: 100%;
+            }
+            #investimento table tr {
+                margin-bottom: 1.5rem; /* Espaçamento entre os cards */
+                border: 1px solid #e2e8f0;
+                border-radius: 0.75rem;
+                overflow: hidden;
+            }
+            #investimento table td {
+                padding: 0.75rem 1rem;
+                text-align: right; /* Alinha o conteúdo à direita */
+                position: relative;
+                border-bottom: 1px solid #f1f5f9;
+            }
+             #investimento table tr:last-child td:last-child {
+                border-bottom: none;
+            }
+            #investimento table td::before {
+                content: attr(data-label); /* Adiciona o rótulo antes do conteúdo */
+                position: absolute;
+                left: 1rem;
+                font-weight: 600;
+                color: #475569;
+                text-align: left;
+            }
+            /* Ajustes específicos para as células */
+            #investimento table td:nth-of-type(3) { /* Célula do Investimento */
+                 font-weight: 700;
+            }
+             #investimento table td:nth-of-type(4) { /* Célula do Retorno */
+                 text-align: center;
+                 padding-top: 1rem;
+                 padding-bottom: 1rem;
+            }
+             #investimento table td:nth-of-type(4)::before {
+                display: none; /* Não precisa de rótulo para o botão */
+            }
+        }
     </style>
 </head>
 <body class="bg-slate-100 text-slate-800">
@@ -120,9 +169,9 @@
             <section id="investimento" class="mb-8 md:mb-12 bg-white rounded-xl shadow-lg p-6 md:p-8">
                 <h2 class="text-2xl md:text-3xl font-bold text-[#003f5c] mb-2 text-center">Opções de Investimento e Pacotes</h2>
                 <p class="text-base md:text-lg text-slate-700 mb-8 text-center max-w-4xl mx-auto">Compare os pacotes e passe o mouse (ou toque no celular) sobre o tempo de retorno para ver a análise.</p>
-                <div class="w-full overflow-x-auto">
-                    <table class="w-full min-w-[700px] text-left border-collapse">
-                        <thead class="bg-slate-100">
+                <div class="w-full">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
                             <tr>
                                 <th class="p-3 md:p-4 text-base md:text-lg font-semibold text-[#003f5c] rounded-tl-lg">Projeto / Pacote</th>
                                 <th class="p-3 md:p-4 text-base md:text-lg font-semibold text-[#003f5c]">Descrição</th>
@@ -130,58 +179,58 @@
                                 <th class="p-3 md:p-4 text-base md:text-lg font-semibold text-[#003f5c] rounded-tr-lg text-center">Retorno Estimado</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-200">
+                        <tbody>
                             <tr class="hover:bg-slate-50">
-                                <td class="p-3 md:p-4 font-semibold text-slate-800 align-middle">Projeto 1: Faturamento</td>
-                                <td class="p-3 md:p-4 text-slate-600 align-middle">Solução em Executável (.exe)</td>
-                                <td class="p-3 md:p-4 text-slate-800 font-bold text-right align-middle">R$ 6.000,00</td>
-                                <td class="p-3 md:p-4 text-center align-middle">
+                                <td data-label="Projeto / Pacote" class="p-3 md:p-4 font-semibold text-slate-800 align-middle">Projeto 1: Faturamento</td>
+                                <td data-label="Descrição" class="p-3 md:p-4 text-slate-600 align-middle">Solução em Executável (.exe)</td>
+                                <td data-label="Investimento" class="p-3 md:p-4 text-slate-800 font-bold text-right align-middle">R$ 6.000,00</td>
+                                <td data-label="Retorno Estimado" class="p-3 md:p-4 text-center align-middle">
                                     <span class="payback-info cursor-pointer bg-slate-200 text-slate-700 px-3 py-1 rounded-full text-sm font-semibold" data-tooltip="Com um investimento de R$ 6.000,00, o retorno é rápido, estimado em 4 a 6 meses. O baixo custo inicial e a implementação ágil eliminam horas de trabalho manual de faturamento, reduzindo erros e liberando tempo para focar em vendas.">
                                         Payback: ~4-6 meses
                                     </span>
                                 </td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <td class="p-3 md:p-4 font-semibold text-slate-800 align-middle">Projeto 1: Faturamento</td>
-                                <td class="p-3 md:p-4 text-slate-600 align-middle">Solução em Nuvem (AWS)</td>
-                                <td class="p-3 md:p-4 text-slate-800 font-bold text-right align-middle">R$ 10.000,00</td>
-                                <td class="p-3 md:p-4 text-center align-middle">
+                                <td data-label="Projeto / Pacote" class="p-3 md:p-4 font-semibold text-slate-800 align-middle">Projeto 1: Faturamento</td>
+                                <td data-label="Descrição" class="p-3 md:p-4 text-slate-600 align-middle">Solução em Nuvem (AWS)</td>
+                                <td data-label="Investimento" class="p-3 md:p-4 text-slate-800 font-bold text-right align-middle">R$ 10.000,00</td>
+                                <td data-label="Retorno Estimado" class="p-3 md:p-4 text-center align-middle">
                                     <span class="payback-info cursor-pointer bg-slate-200 text-slate-700 px-3 py-1 rounded-full text-sm font-semibold" data-tooltip="O investimento de R$ 10.000,00 se paga em aproximadamente 6 a 8 meses, não apenas pela economia de tempo, mas pela construção de uma operação robusta. A automação 24/7 em nuvem garante que nenhum pedido atrase, sendo um investimento na escalabilidade e confiabilidade do seu negócio a longo prazo.">
                                         Payback: ~6-8 meses
                                     </span>
                                 </td>
                             </tr>
                              <tr class="hover:bg-slate-50">
-                                <td class="p-3 md:p-4 font-semibold text-slate-800 align-middle">Projeto 2: Estoque</td>
-                                <td class="p-3 md:p-4 text-slate-600 align-middle">Solução em Executável (.exe)</td>
-                                <td class="p-3 md:p-4 text-slate-800 font-bold text-right align-middle">R$ 4.000,00</td>
-                                <td class="p-3 md:p-4 text-center align-middle">
+                                <td data-label="Projeto / Pacote" class="p-3 md:p-4 font-semibold text-slate-800 align-middle">Projeto 2: Estoque</td>
+                                <td data-label="Descrição" class="p-3 md:p-4 text-slate-600 align-middle">Solução em Executável (.exe)</td>
+                                <td data-label="Investimento" class="p-3 md:p-4 text-slate-800 font-bold text-right align-middle">R$ 4.000,00</td>
+                                <td data-label="Retorno Estimado" class="p-3 md:p-4 text-center align-middle">
                                     <span class="payback-info cursor-pointer bg-slate-200 text-slate-700 px-3 py-1 rounded-full text-sm font-semibold" data-tooltip="Com R$ 4.000,00, você obtém o retorno em 3 a 5 meses. Este valor é recuperado rapidamente ao evitar rupturas de estoque ou compras excessivas. Ter dados consolidados transforma sua tomada de decisão, otimizando o capital de giro.">
                                         Payback: ~3-5 meses
                                     </span>
                                 </td>
                             </tr>
-                            <tr class="hover:bg-orange-50 border-l-4 border-orange-400">
-                                <td class="p-3 md:p-4 font-semibold text-[#7a5195] align-middle">Pacote Essencial</td>
-                                <td class="p-3 md:p-4 text-slate-600 align-middle">Projeto 1 (.exe) + Projeto 2 (.exe)</td>
-                                <td class="p-3 md:p-4 text-[#7a5195] font-bold text-right align-middle">
+                            <tr class="hover:bg-orange-50 md:border-l-4 border-orange-400">
+                                <td data-label="Projeto / Pacote" class="p-3 md:p-4 font-semibold text-[#7a5195] align-middle">Pacote Essencial</td>
+                                <td data-label="Descrição" class="p-3 md:p-4 text-slate-600 align-middle">Projeto 1 (.exe) + Projeto 2 (.exe)</td>
+                                <td data-label="Investimento" class="p-3 md:p-4 text-[#7a5195] font-bold text-right align-middle">
                                     <div>R$ 9.000,00</div>
                                     <div class="text-sm font-normal text-green-600">Economia de R$ 1.000</div>
                                 </td>
-                                <td class="p-3 md:p-4 text-center align-middle">
+                                <td data-label="Retorno Estimado" class="p-3 md:p-4 text-center align-middle">
                                     <span class="payback-info cursor-pointer bg-[#7a5195] text-white px-3 py-1 rounded-full text-sm font-semibold" data-tooltip="O investimento de R$ 9.000,00 combina as duas automações e se paga em apenas 3 a 4 meses. Você resolve os gargalos de faturamento e estoque simultaneamente, com um retorno acelerado graças ao desconto do pacote e ao ganho massivo de eficiência operacional.">
                                         Payback: ~3-4 meses
                                     </span>
                                 </td>
                             </tr>
-                            <tr class="hover:bg-orange-50 border-l-4 border-orange-400">
-                                <td class="p-3 md:p-4 font-semibold text-[#bc5090] align-middle">Pacote Escalável</td>
-                                <td class="p-3 md:p-4 text-slate-600 align-middle">Projeto 1 (Nuvem) + Projeto 2 (.exe)</td>
-                                <td class="p-3 md:p-4 text-[#bc5090] font-bold text-right align-middle">
+                            <tr class="hover:bg-orange-50 md:border-l-4 border-orange-400">
+                                <td data-label="Projeto / Pacote" class="p-3 md:p-4 font-semibold text-[#bc5090] align-middle">Pacote Escalável</td>
+                                <td data-label="Descrição" class="p-3 md:p-4 text-slate-600 align-middle">Projeto 1 (Nuvem) + Projeto 2 (.exe)</td>
+                                <td data-label="Investimento" class="p-3 md:p-4 text-[#bc5090] font-bold text-right align-middle">
                                     <div>R$ 12.000,00</div>
                                     <div class="text-sm font-normal text-green-600">Economia de R$ 2.000</div>
                                 </td>
-                                <td class="p-3 md:p-4 text-center align-middle">
+                                <td data-label="Retorno Estimado" class="p-3 md:p-4 text-center align-middle">
                                     <span class="payback-info cursor-pointer bg-[#bc5090] text-white px-3 py-1 rounded-full text-sm font-semibold" data-tooltip="O investimento de R$ 12.000,00 tem um retorno estimado em 5 a 7 meses. Esta é a solução definitiva: garante a operação de faturamento 24/7 de forma escalável na nuvem, enquanto otimiza o controle de estoque de maneira econômica, preparando seu negócio para o crescimento futuro.">
                                         Payback: ~5-7 meses
                                     </span>
@@ -313,18 +362,22 @@
                 
                 const tooltipRect = tooltip.getBoundingClientRect();
                 const pos = {
-                    x: x + 15,
-                    y: y + 15
+                    x: x,
+                    y: y + 20
                 };
 
-                if (pos.x + tooltipRect.width > window.innerWidth) {
-                    pos.x = x - tooltipRect.width - 15;
+                if (pos.x + (tooltipRect.width / 2) > window.innerWidth) {
+                    pos.x = window.innerWidth - (tooltipRect.width / 2) - 10;
                 }
+                 if (pos.x - (tooltipRect.width / 2) < 0) {
+                    pos.x = (tooltipRect.width / 2) + 10;
+                }
+                
                 if (pos.y + tooltipRect.height > window.innerHeight) {
-                    pos.y = y - tooltipRect.height - 15;
+                    pos.y = y - tooltipRect.height - 20;
                 }
 
-                tooltip.style.left = `${pos.x}px`;
+                tooltip.style.left = `${pos.x - (tooltipRect.width/2)}px`;
                 tooltip.style.top = `${pos.y}px`;
 
                 setTimeout(() => { tooltip.style.opacity = 1; }, 10);
@@ -332,6 +385,7 @@
             }
 
             function hideTooltip() {
+                if(!activeTooltip) return;
                 tooltip.style.opacity = 0;
                 setTimeout(() => { 
                     tooltip.style.display = 'none'; 
@@ -349,30 +403,43 @@
                             hideTooltip();
                         } else {
                             if (activeTooltip) hideTooltip();
-                            showTooltip(el, e.clientX, e.clientY);
+                            const rect = e.target.getBoundingClientRect();
+                            showTooltip(el, rect.left + (rect.width/2), rect.bottom);
                         }
                     });
                 });
-                document.addEventListener('click', () => {
-                    if (activeTooltip) hideTooltip();
+                document.addEventListener('click', (e) => {
+                     if (activeTooltip && !activeTooltip.contains(e.target)) {
+                        hideTooltip();
+                    }
                 });
 
             } else {
                  paybackElements.forEach(el => {
                     el.addEventListener('mousemove', e => {
                        if (activeTooltip === el) {
+                           let x = e.clientX;
+                           let y = e.clientY + 20;
                            const tooltipRect = tooltip.getBoundingClientRect();
-                           let x = e.clientX + 15;
-                           let y = e.clientY + 15;
-                           if (x + tooltipRect.width > window.innerWidth) x = e.clientX - tooltipRect.width - 15;
-                           if (y + tooltipRect.height > window.innerHeight) y = e.clientY - tooltipRect.height - 15;
-                           tooltip.style.left = `${x}px`;
+
+                           if (x + (tooltipRect.width / 2) > window.innerWidth) {
+                               x = window.innerWidth - (tooltipRect.width / 2) - 10;
+                           }
+                            if (x - (tooltipRect.width / 2) < 0) {
+                               x = (tooltipRect.width / 2) + 10;
+                           }
+                           if (y + tooltipRect.height > window.innerHeight) {
+                               y = e.clientY - tooltipRect.height - 20;
+                           }
+                           
+                           tooltip.style.left = `${x - (tooltipRect.width/2)}px`;
                            tooltip.style.top = `${y}px`;
                        }
                     });
 
                     el.addEventListener('mouseenter', e => {
-                        showTooltip(el, e.clientX, e.clientY);
+                         const rect = e.target.getBoundingClientRect();
+                         showTooltip(el, rect.left + (rect.width/2), rect.bottom);
                     });
 
                     el.addEventListener('mouseleave', () => {
@@ -384,3 +451,4 @@
     </script>
 </body>
 </html>
+
